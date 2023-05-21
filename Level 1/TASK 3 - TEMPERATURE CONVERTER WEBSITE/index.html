@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia">
+    <title>Temperature Converter</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+
+      }
+      html,
+      body {
+        height: 100%;
+
+      }
+      body {
+        
+        display: grid;
+        place-content: center;
+        background:rgb(243, 246, 250);
+      }
+      main {
+        
+        border-radius: 20px;
+        background-color: white;
+        box-shadow: 2px 2px 5px rgb(181, 165, 165);
+        padding: 2rem;
+        width: 400px;
+      }
+      main img{
+        float: right;
+        height: 24px;
+        width: 24px;
+        padding: 2px;
+      }
+      #form {
+        gap: 1rem;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .convert {
+        all: unset;
+        color: white;
+        background-color: rgb(64, 110, 250);
+        font-weight: bold;
+        padding: 10px;
+        cursor: pointer;
+        border-radius: 8px;
+        margin-top: 10px;
+      }
+
+      input,select {
+        height: 35px;
+        margin-block-end: 1rem;
+        font-size: 1.15rem;
+        border: none;
+        border-bottom: 1px solid;
+      }
+
+      .label {
+        color: #555;
+        font-size: 0.75rem;
+      }
+
+      label {
+        gap: 0.5rem;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .result {
+        font-size: 1.1rem;
+        height: 30px;
+        text-align: center;
+    
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+        <b><span id="datetime"></span></b> 
+        <img src="battery.png" alt="" srcset=""> 
+        <img src="wifi.png" alt="" srcset="">
+        <img src="signal.png" alt="" srcset="">
+
+        <script>
+            var dt = new Date();
+            document.getElementById("datetime").innerHTML = dt.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+            </script>
+            <br><br><center>
+        <h3>Temperature converter</h3>
+            </center>
+            
+      <form id="form">
+        <br>
+        <label class="label">Degrees
+          <input type="text" id="degrees" pattern="[0-9\.]+" required title="Numbers Only"/>
+        </label>
+        <label class="label">Type
+          <select name="type" id="type" required>
+            <option value="c" selected>Celsius (°C)</option>
+            <option value="f">Fahrenheit (°F)</option>
+            <option value="k">Kelvin (K)</option>
+          </select>
+        </label>
+
+      
+      <p class="label">Result</p>
+      <p class="result" id="resultOne"></p>
+      <p class="result" id="resultTwo"></p>
+      <hr>
+      <center><button class="convert">Convert</button></center>
+    </form>
+    </main>
+    <script>
+      const form = document.querySelector("#form");
+      console.log("HEloo1");
+      form.addEventListener("submit", (e) => {
+        console.log("HEloo2");
+        e.preventDefault();
+        console.log("HEloo3");
+        const resultOne = document.querySelector("#resultOne");
+        const resultTwo = document.querySelector("#resultTwo");
+        let type = document.querySelector("#type").value;
+        let degrees = document.querySelector("#degrees").value;
+        degrees = parseFloat(degrees);
+        if (type === "c") {
+          console.log("HEloo4");
+          console.log(convertToFahrenheit(degrees, "c"));
+          console.log(convertToKelvin(degrees, "c"));
+          resultOne.innerText = convertToFahrenheit(degrees, "c");
+          resultTwo.innerText = convertToKelvin(degrees, "c");
+        } else if (type === "f") {
+          console.log("HEloo4");
+          console.log(convertTocelsius(degrees, "c"));
+          console.log(convertToKelvin(degrees, "c"));
+          resultOne.innerText = convertTocelsius(degrees, "f");
+          resultTwo.innerText = convertToKelvin(degrees, "f");
+        } else {
+          console.log("HEloo4");
+          console.log(convertTocelsius(degrees, "c"));
+          console.log(convertToFahrenheit(degrees, "c"));
+          resultOne.innerText = convertTocelsius(degrees, "k");
+          resultTwo.innerText = convertToFahrenheit(degrees, "k");
+        }
+      });
+      const convertTocelsius = (value, from) => {
+        if (from === "f") {
+          return `${((value - 32) * (5 / 9)).toFixed(2)} C`;
+        } else {
+          return `${(value - 273.15).toFixed(2)} C`;
+        }
+      };
+      const convertToFahrenheit = (value, from) => {
+        if (from === "c") {
+          return `${(value * 1.8 + 32).toFixed(2)} F`;
+        } else {
+          return `${((value * 9) / 5 - 459.67).toFixed(2)} F`;
+        }
+      };
+      const convertToKelvin = (value, from) => {
+        if (from === "f") {
+          return `${((value + 459.67) * (5 / 9)).toFixed(2)} K`;
+        } else {
+          return `${(value + 273.15).toFixed(2)} K`;
+        }
+      };
+    </script>
+  </body>
+</html>

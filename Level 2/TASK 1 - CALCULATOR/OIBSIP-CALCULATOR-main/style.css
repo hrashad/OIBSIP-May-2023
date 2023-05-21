@@ -1,0 +1,117 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: sans-serif;
+}
+body{
+	background: rgb(255,0,164);
+	background: linear-gradient(90deg, rgba(255,0,164,1) 20%, rgba(191,86,196,1) 48%, rgba(0,245,255,1) 100%);
+}
+.app {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+}
+
+.calculator {
+	background-color: #ebf5ff;
+	width: 100%;
+	max-width: 400px;
+	max-height: 740px;
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+	padding: 10px;
+	border-radius: 15px;
+	padding: 20px;
+
+}
+
+.display {
+	min-height: 200px;
+	padding: 1.5rem;
+	display: flex;
+	justify-content: flex-end;
+	align-items: flex-end;
+	color: rgb(0, 0, 0);
+	text-align: right;
+	flex: 1 1 0%;
+	background-color: #cbe5fe;
+	border-radius: 10px;
+}
+
+.display .content {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	width: 100%;
+	max-width: 100%;
+	overflow: auto;
+}
+
+.display .input {
+	width: 100%;
+	font-size: 2rem;
+    font-weight: 500;
+	margin-bottom: 0.5rem;
+    
+}
+
+.display .output {
+	font-size: 2.5rem;
+	font-weight: 700;
+	width: 100%;
+	white-space: nowrap;
+}
+
+.display .operator {
+	color: #128888;
+}
+
+.display .brackets,
+.display .percent {
+	color: #000000;
+}
+
+.buttons {
+	padding: 1.5rem 0 0;
+	border-radius: 10px;
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	grid-template-rows: repeat(5, 1fr);
+	grid-gap: 1rem;
+}
+
+.buttons .button {
+	position: relative;
+	cursor: pointer;
+	display: block;
+	height: 0;
+	padding-top: 100%;
+	background-color: #262933;
+	border-radius: 0.5rem;
+	transition: 0.2s;
+	user-select: none;
+}
+
+.buttons .button span {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+
+	font-size: 2rem;
+	font-weight: 700;
+}
+
+.buttons .button:hover {
+	box-shadow: inset 0px 0px 8px rgba(0, 0, 0, 0.2);
+}
+
+.buttons .button.operator span {
+}
+
+.buttons .button.action span {
+}
